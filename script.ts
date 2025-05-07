@@ -7,6 +7,9 @@ import { marked } from 'marked';
 
 const cardContainer = document.getElementById("cardContainer")!;
 const fileList = document.getElementById("fileList")!;
+const printButton = document.getElementById("printButton")!;
+
+let currentFilePath = "";
 
 // Simulierte Liste von Markdown-Dateien im cards/-Verzeichnis
 const mockFiles = [
@@ -18,7 +21,10 @@ function createFileButtons() {
   mockFiles.forEach((filename) => {
     const btn = document.createElement("button");
     btn.textContent = filename;
-    btn.addEventListener("click", () => loadMarkdown(`cards/${filename}`));
+    btn.addEventListener("click", () => {
+      currentFilePath = `cards/${filename}`;
+      loadMarkdown(currentFilePath);
+    });
     fileList.appendChild(btn);
   });
 }
@@ -86,5 +92,14 @@ function renderCards(cards: Flashcard[]) {
     });
   });
 }
+
+printButton.addEventListener("click", () => {
+  if (!currentFilePath) {
+    alert("Bitte zuerst eine Datei laden.");
+    return;
+  }
+  const url = `print.html?file=${encodeURIComponent(currentFilePath)}`;
+  window.open(url, "_blank");
+});
 
 createFileButtons();
