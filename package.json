@@ -1,18 +1,17 @@
 {
   "name": "flashcard-app",
   "version": "1.0.0",
-  "description": "Flashcard viewer and printer app",
-  "main": "index.html",
+  "description": "Markdown Flashcard Viewer and Printer",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
-    "marked": "^4.0.12",
-    "vite": "^6.3.5"
+    "marked": "^9.1.2"
   },
   "devDependencies": {
-    "typescript": "^4.0.0"
+    "typescript": "^5.4.5",
+    "vite": "^6.3.5"
   }
 }

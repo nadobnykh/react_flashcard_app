@@ -3,6 +3,8 @@ interface Flashcard {
   answer: string;
 }
 
+import { marked } from 'marked';
+
 const cardContainer = document.getElementById("cardContainer")!;
 const fileList = document.getElementById("fileList")!;
 
