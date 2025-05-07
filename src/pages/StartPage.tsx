@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
+import './StartPage.css';
 
 interface Flashcard {
   question: string;
@@ -29,7 +30,7 @@ const StartPage: React.FC = () => {
           const blocks = md.split(/---+/g).map(s => s.trim()).filter(Boolean);
           const parsedCards: Flashcard[] = [];
           blocks.forEach(block => {
-            const match = block.match(/^###\\s*\\S+(.+?)\\n+([\\s\\S]+)/);
+            const match = block.match(/^###\s*\S+(.+?)\n+([\s\S]+)/);
             if (match) {
               const [, question, answer] = match;
               parsedCards.push({ question: question.trim(), answer: answer.trim() });
@@ -79,93 +80,24 @@ const StartPage: React.FC = () => {
       <button
         id="printButton"
         onClick={handlePrintClick}
-        style={{
-          marginTop: '1rem',
-          padding: '0.5rem 1rem',
-          background: '#4CAF50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '8px',
-          cursor: 'pointer',
-        }}
       >
         🖨️ Druckansicht
       </button>
-      <div
-        id="cardContainer"
-        style={{
-          marginTop: '2rem',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1rem',
-        }}
-      >
+      <div id="cardContainer" className="card-container">
         {loading && <p>Loading...</p>}
         {!loading &&
-          cards.map((card, index) => (
+          cards.map((card, idx) => (
             <div
-              key={index}
-              className={`card${flippedCards.has(index) ? ' flipped' : ''}`}
-              style={{
-                background: 'white',
-                borderRadius: '10px',
-                padding: '1rem',
-                boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
-                cursor: 'pointer',
-                perspective: 1000,
-              }}
-              onMouseDown={() => toggleFlip(index)}
+              key={idx}
+              className={`card${flippedCards.has(idx) ? ' flipped' : ''}`}
+              onMouseDown={() => toggleFlip(idx)}
             >
-              <div
-                className="card-inner"
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '100%',
-                  textAlign: 'center',
-                  transition: 'transform 0.6s',
-                  transformStyle: 'preserve-3d',
-                  transform: flippedCards.has(index)
-                    ? 'rotateY(180deg)'
-                    : 'none',
-                }}
-              >
-                <div
-                  className="card-front"
-                  style={{
-                    position: 'absolute',
-                    width: '100%',
-                    backfaceVisibility: 'hidden',
-                    color: '#0077cc',
-                    fontWeight: 'bold',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '6cm',
-                    fontSize: '1.1rem',
-                    border: '1px dashed #999',
-                    borderRadius: '10px',
-                  }}
-                >
+              <div className="card-inner" style={{transform: flippedCards.has(idx) ? 'rotateY(180deg)' : 'none'}}>
+                <div className="card-front">
                   {card.question}
                 </div>
                 <div
                   className="card-back"
-                  style={{
-                    position: 'absolute',
-                    width: '100%',
-                    backfaceVisibility: 'hidden',
-                    color: '#333',
-                    transform: 'rotateY(180deg)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '6cm',
-                    fontSize: '1.1rem',
-                    padding: '0.5rem',
-                    border: '1px dashed #999',
-                    borderRadius: '10px',
-                  }}
                   dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }}
                 />
               </div>

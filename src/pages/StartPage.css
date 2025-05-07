@@ -1,0 +1,103 @@
+.card-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  perspective: 1200px;
+  transition: transform 0.4s ease;
+  min-height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6cm;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.card-front {
+  background-color: #0077cc;
+  color: white;
+  font-weight: 600;
+  box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border: 2px solid #005fa3;
+}
+
+.card-back {
+  background-color: #f7f9fc;
+  color: #333;
+  transform: rotateY(180deg);
+  border: 2px solid #ccc;
+  font-weight: 400;
+  overflow-y: auto;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  padding-top: 1.5rem;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+#fileList {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
