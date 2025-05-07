@@ -98,8 +98,11 @@ printButton.addEventListener("click", () => {
     alert("Bitte zuerst eine Datei laden.");
     return;
   }
-  const url = `print.html?file=${encodeURIComponent(currentFilePath)}`;
-  window.open(url, "_blank");
+  const url = `print?file=${encodeURIComponent(currentFilePath)}`;
+  const printWindow = window.open(url, "_blank");
+  if (printWindow) {
+    //printWindow.onload = () => printWindow.print();
+  }
 });
 
 createFileButtons();

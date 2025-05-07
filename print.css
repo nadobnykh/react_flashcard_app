@@ -1,21 +1,38 @@
 @media print {
   body {
-    background: white;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1cm;
   }
-
-  #fileList,
-  #printButton,
-  h1 {
-    display: none;
-  }
-
-  #cardContainer {
-    display: block;
-  }
-
   .card {
-    page-break-after: always;
-    border: none;
-    box-shadow: none;
+    border: 1px dashed #999;
+    padding: 1rem;
+    height: 6cm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    page-break-inside: avoid;
+    position: relative;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    border-left: 1px dashed #ccc;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 0;
+    border-top: 1px dashed #ccc;
   }
 }
