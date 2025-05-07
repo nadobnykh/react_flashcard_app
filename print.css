@@ -1,0 +1,21 @@
+@media print {
+  body {
+    background: white;
+  }
+
+  #fileList,
+  #printButton,
+  h1 {
+    display: none;
+  }
+
+  #cardContainer {
+    display: block;
+  }
+
+  .card {
+    page-break-after: always;
+    border: none;
+    box-shadow: none;
+  }
+}
