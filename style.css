@@ -1,0 +1,114 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0077cc;
+  text-align: center;
+}
+
+#fileList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+#fileList button {
+  padding: 12px 24px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#fileList button:hover {
+  background: #005fa3;
+}
+
+#cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1100px;
+  width: 100%;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  page-break-inside: avoid;
+}
+
+.card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #0077cc;
+}
+
+.card div {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+#printButton {
+  background: #4CAF50;
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  margin-top: 30px;
+}
+
+#printButton:hover {
+  background: #45a049;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  #fileList,
+  #printButton,
+  h1 {
+    display: none;
+  }
+
+  #cardContainer {
+    display: block;
+  }
+
+  .card {
+    page-break-after: always;
+    border: none;
+    box-shadow: none;
+  }
+}
