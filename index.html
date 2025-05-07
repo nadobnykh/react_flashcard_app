@@ -1,19 +1,14 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carl's Flashcard Viewer & Printer</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="print.css" media="print" />
-</head>
-<body>
-  <h1>📚 Flashcard Viewer</h1>
-  <div id="fileList"></div>
-  <button id="printButton" class="print-button">
-    🖨️ Druckansicht
-  </button>
-  <div id="cardContainer"></div>
-  <script type="module" src="script.ts"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meine App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Das Script wird von Vite automatisch ersetzt im Dev-Mode -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
