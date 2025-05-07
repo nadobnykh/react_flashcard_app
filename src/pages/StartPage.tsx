@@ -55,14 +55,15 @@ const StartPage: React.FC = () => {
     navigate(`/print?file=${encodeURIComponent(`cards/${currentFile}`)}`);
   };
 
-  const toggleFlip = (index: number) => {
+  // Flip logic: flip on mouse or touch down, flip back on mouse/touch up or leave
+  const startFlip = (index: number) => {
+    setFlippedCards(prev => new Set(prev).add(index));
+  };
+
+  const endFlip = (index: number) => {
     setFlippedCards(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
-      } else {
-        newSet.add(index);
-      }
+      newSet.delete(index);
       return newSet;
     });
   };
@@ -77,10 +78,7 @@ const StartPage: React.FC = () => {
           </button>
         ))}
       </div>
-      <button
-        id="printButton"
-        onClick={handlePrintClick}
-      >
+      <button id="printButton" onClick={handlePrintClick}>
         🖨️ Druckansicht
       </button>
       <div id="cardContainer" className="card-container">
@@ -90,16 +88,15 @@ const StartPage: React.FC = () => {
             <div
               key={idx}
               className={`card${flippedCards.has(idx) ? ' flipped' : ''}`}
-              onMouseDown={() => toggleFlip(idx)}
+              onMouseDown={() => startFlip(idx)}
+              onMouseUp={() => endFlip(idx)}
+              onMouseLeave={() => endFlip(idx)}
+              onTouchStart={() => startFlip(idx)}
+              onTouchEnd={() => endFlip(idx)}
             >
-              <div className="card-inner" style={{transform: flippedCards.has(idx) ? 'rotateY(180deg)' : 'none'}}>
-                <div className="card-front">
-                  {card.question}
-                </div>
-                <div
-                  className="card-back"
-                  dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }}
-                />
+              <div className="card-inner" style={{ transform: flippedCards.has(idx) ? 'rotateY(180deg)' : 'none' }}>
+                <div className="card-front">{card.question}</div>
+                <div className="card-back" dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
               </div>
             </div>
           ))}

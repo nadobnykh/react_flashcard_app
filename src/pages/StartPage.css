@@ -1,14 +1,14 @@
+/* General container */
 .card-container {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
+  margin: 1.5rem auto;
   max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 0 0.75rem;
 }
 
+/* Flashcard styles */
 .card {
   background: #fff;
   border-radius: 1rem;
@@ -17,7 +17,7 @@
   cursor: pointer;
   perspective: 1200px;
   transition: transform 0.4s ease;
-  min-height: 8rem;
+  min-height: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,15 +43,12 @@
 .card-back {
   position: absolute;
   width: 100%;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 6cm;
-  font-size: 1.2rem;
+  height: 7rem;
+  font-size: 1.25rem;
   border-radius: 1rem;
   padding: 1rem;
   box-sizing: border-box;
@@ -61,9 +58,9 @@
 .card-front {
   background-color: #0077cc;
   color: white;
-  font-weight: 600;
-  box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.22);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   border: 2px solid #005fa3;
 }
 
@@ -74,20 +71,23 @@
   border: 2px solid #ccc;
   font-weight: 400;
   overflow-y: auto;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.06);
   padding-top: 1.5rem;
+  text-align: left;
 }
 
+/* Buttons and file list */
 button {
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
+  margin: 0.4rem 0.4rem 1rem 0.4rem;
   background-color: #0077cc;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  user-select: none;
 }
 
 button:hover {
@@ -100,4 +100,37 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .card {
+    min-height: 9rem;
+  }
+  .card-front,
+  .card-back {
+    height: 6rem;
+    font-size: 1.1rem;
+  }
+
+  button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-height: 8rem;
+  }
+  .card-front,
+  .card-back {
+    height: 5.5rem;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }
