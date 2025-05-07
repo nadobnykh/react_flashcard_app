@@ -48,18 +48,24 @@ function parseMarkdownToCards(md: string): Flashcard[] {
 function renderCards(cards: Flashcard[]) {
   cardContainer.innerHTML = "";
   cards.forEach(card => {
-    const div = document.createElement("div");
-    div.className = "card";
+    const cardEl = document.createElement("div");
+    cardEl.className = "card";
 
-    const question = document.createElement("h3");
-    question.textContent = card.question;
+    const inner = document.createElement("div");
+    inner.className = "card-inner";
 
-    const answer = document.createElement("div");
-    answer.innerHTML = marked.parse(card.answer);
+    const front = document.createElement("div");
+    front.className = "card-front";
+    front.textContent = card.question;
 
-    div.appendChild(question);
-    div.appendChild(answer);
-    cardContainer.appendChild(div);
+    const back = document.createElement("div");
+    back.className = "card-back";
+    back.innerHTML = marked.parse(card.answer);
+
+    inner.appendChild(front);
+    inner.appendChild(back);
+    cardEl.appendChild(inner);
+    cardContainer.appendChild(cardEl);
   });
 }
 
