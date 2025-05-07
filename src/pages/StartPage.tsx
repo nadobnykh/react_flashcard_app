@@ -67,6 +67,11 @@ const StartPage: React.FC = () => {
       return newSet;
     });
   };
+// Prevent context menu on long press touch/mobile devices
+const preventContextMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  e.preventDefault();
+};
+
 
   return (
     <div>
@@ -93,6 +98,7 @@ const StartPage: React.FC = () => {
               onMouseLeave={() => endFlip(idx)}
               onTouchStart={() => startFlip(idx)}
               onTouchEnd={() => endFlip(idx)}
+              onContextMenu={preventContextMenu}
             >
               <div className="card-inner" style={{ transform: flippedCards.has(idx) ? 'rotateY(180deg)' : 'none' }}>
                 <div className="card-front">{card.question}</div>

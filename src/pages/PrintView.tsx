@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { marked } from 'marked';
+import { useNavigate } from 'react-router-dom';
 
 interface Flashcard {
   question: string;
@@ -9,11 +10,12 @@ interface Flashcard {
 const PrintView = () => {
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
-    
+
     if (file) {
       fetch(file)
         .then(res => res.text())
@@ -38,17 +40,48 @@ const PrintView = () => {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1cm', padding: '1cm' }}>
+    <div
+      style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1cm', padding: '1cm' }}
+      onClick={() => navigate('/')}
+    >
       <div style={{ display: 'contents' }}>
         {cards.map((card, index) => (
-          <div key={index} className="card" style={{ border: '1px dashed #999', padding: '1rem', height: '6cm', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', pageBreakInside: 'avoid', position: 'relative' }}>
+          <div
+            key={index}
+            className="card"
+            style={{
+              border: '1px dashed #999',
+              padding: '1rem',
+              height: '6cm',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.1rem',
+              pageBreakInside: 'avoid',
+              position: 'relative',
+            }}
+          >
             <div>{card.question}</div>
           </div>
         ))}
       </div>
       <div style={{ display: 'contents' }}>
         {cards.map((card, index) => (
-          <div key={index} className="card" style={{ border: '1px dashed #999', padding: '1rem', height: '6cm', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', pageBreakInside: 'avoid', position: 'relative' }}>
+          <div
+            key={index}
+            className="card"
+            style={{
+              border: '1px dashed #999',
+              padding: '1rem',
+              height: '6cm',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.1rem',
+              pageBreakInside: 'avoid',
+              position: 'relative',
+            }}
+          >
             <div dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
           </div>
         ))}
