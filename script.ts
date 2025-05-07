@@ -66,6 +66,24 @@ function renderCards(cards: Flashcard[]) {
     inner.appendChild(back);
     cardEl.appendChild(inner);
     cardContainer.appendChild(cardEl);
+
+    // Flip on touch or mouse hold
+    let isTouch = false;
+
+    const startFlip = () => inner.classList.add("flipped");
+    const endFlip = () => inner.classList.remove("flipped");
+
+    cardEl.addEventListener("mousedown", startFlip);
+    cardEl.addEventListener("mouseup", endFlip);
+    cardEl.addEventListener("mouseleave", endFlip);
+
+    cardEl.addEventListener("touchstart", () => {
+      isTouch = true;
+      startFlip();
+    });
+    cardEl.addEventListener("touchend", () => {
+      endFlip();
+    });
   });
 }
 
