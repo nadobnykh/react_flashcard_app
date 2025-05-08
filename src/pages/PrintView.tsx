@@ -4,6 +4,7 @@ import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
 
 interface Flashcard {
+  filename: string;
   question: string;
   answer: string;
 }
@@ -27,7 +28,8 @@ const PrintView = () => {
             const match = block.match(/^###\s*\S+(.+?)\n+([\s\S]+)/);
             if (match) {
               const [, question, answer] = match;
-              cards.push({ question: question.trim(), answer: answer.trim() });
+              const filename = file.split('/').pop() || 'unknown'; // Extract filename from the file path
+              cards.push({ filename: filename.trim(), question: question.trim(), answer: answer.trim() });
             }
           });
           setCards(cards);
@@ -45,6 +47,7 @@ const PrintView = () => {
       <div className="card-container-question">
         {cards.map((card, index) => (
           <div key={index} className="card">
+            <div className="card-file">{card.filename}</div>
             <div>{card.question}</div>
           </div>
         ))}
