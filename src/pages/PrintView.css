@@ -28,3 +28,24 @@
   page-break-inside: avoid;
   position: relative;
 }
+
+.card-file {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.3rem;
+  font-size: 0.7rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: Arial, sans-serif;
+  user-select: none;
+  pointer-events: none;
+}
+
+.card-file::before {
+  content: "\\1F4C4"; /* page icon emoji */
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-right: 0.2rem;
+}
