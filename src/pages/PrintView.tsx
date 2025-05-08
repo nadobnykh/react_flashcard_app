@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './PrintView.css';
 import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,48 +41,17 @@ const PrintView = () => {
   }
 
   return (
-    <div
-      style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1cm', padding: '1cm' }}
-      onClick={() => navigate('/')}
-    >
-      <div style={{ display: 'contents' }}>
+    <div className="root-container" onClick={() => navigate('/')}>
+      <div className="card-container-question">
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className="card"
-            style={{
-              border: '1px dashed #999',
-              padding: '1rem',
-              height: '6cm',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.1rem',
-              pageBreakInside: 'avoid',
-              position: 'relative',
-            }}
-          >
+          <div key={index} className="card">
             <div>{card.question}</div>
           </div>
         ))}
       </div>
-      <div style={{ display: 'contents' }}>
+      <div className="card-container-answer">
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className="card"
-            style={{
-              border: '1px dashed #999',
-              padding: '1rem',
-              height: '6cm',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.1rem',
-              pageBreakInside: 'avoid',
-              position: 'relative',
-            }}
-          >
+          <div key={index} className="card">
             <div dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
           </div>
         ))}
