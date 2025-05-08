@@ -47,7 +47,7 @@ const PrintView = () => {
       <div className="card-container-question">
         {cards.map((card, index) => (
           <div key={index} className="card">
-            <div className="card-filename">{card.filename}</div>
+            <div className="card-file">{card.filename}</div>
             <div>{card.question}</div>
           </div>
         ))}

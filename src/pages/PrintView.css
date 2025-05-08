@@ -44,7 +44,7 @@
 }
 
 .card-file::before {
-  content: "\\1F4C4"; /* page icon emoji */
+  content: "🚀"; /* page icon emoji */
   font-size: 0.8rem;
   display: inline-block;
   margin-right: 0.2rem;
