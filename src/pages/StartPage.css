@@ -10,17 +10,7 @@
 
 /* Flashcard styles */
 .card {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  perspective: 1200px;
-  transition: transform 0.4s ease;
   min-height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .card-inner {
@@ -28,7 +18,6 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  padding: 1rem;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
   border-radius: 1rem;
@@ -47,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 7rem;
+  height: 10rem;
   font-size: 1.25rem;
   border-radius: 1rem;
   padding: 1rem;
@@ -109,7 +98,7 @@ button:hover {
   }
   .card-front,
   .card-back {
-    height: 6rem;
+    height: 9rem;
     font-size: 1.1rem;
   }
 
@@ -125,7 +114,7 @@ button:hover {
   }
   .card-front,
   .card-back {
-    height: 5.5rem;
+    height: 8rem;
     font-size: 1rem;
   }
 

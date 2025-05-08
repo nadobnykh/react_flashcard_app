@@ -44,17 +44,17 @@ const PrintView = () => {
 
   return (
     <div className="root-container" onClick={() => navigate('/')}>
-      <div className="card-container-question">
+      <div className="page-container page-ltr">
         {cards.map((card, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card-print">
             <div className="card-file">{card.filename}</div>
             <div>{card.question}</div>
           </div>
         ))}
       </div>
-      <div className="card-container-answer">
+      <div className="page-container page-rtl">
         {cards.map((card, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card-print">
             <div dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
           </div>
         ))}
