@@ -9,9 +9,10 @@ body {
 }
 
 code {
-  font-family: fantasy, sans-serif;
-  font-size: 0.9rem;
-  background-color: #f4f4f4;
+  font-family: 'Roboto condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #fcfcfc;
   white-space: pre-wrap;
 }
 
@@ -32,18 +33,24 @@ code {
 
 .card-print {
   border: 1px dashed #999;
-  padding: 1rem;
-  height: 5.8cm;
+  padding: 0.2rem 0.2rem 0.2rem 1rem;
+  height: 8.7cm;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-family: cursive, sans-serif;
+  font-size: 1rem;
   page-break-inside: avoid;
   position: relative;
   direction: ltr;
   background: #fff;
   cursor: pointer;
   perspective: 1200px;
+}
+
+.card-print-front {
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .card-file {

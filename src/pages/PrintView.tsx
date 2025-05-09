@@ -17,7 +17,7 @@ const PrintView = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
-    const cardsPerPage = 8; // Number of cards per page
+    const cardsPerPage = 6; // Number of cards per page
 
     if (file) {
       fetch(file)
@@ -57,7 +57,7 @@ const PrintView = () => {
         <div key={index} className="pages-wrapper">
           <div className="page-container page-ltr">
             {page.map((card, index) => (
-              <div key={index} className="card-print">
+              <div key={index} className="card-print card-print-front">
                 <div className="card-file">{card.filename}</div>
                 <div>{card.question}</div>
               </div>
