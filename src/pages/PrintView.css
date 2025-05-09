@@ -8,6 +8,13 @@ body {
 .root-container {
 }
 
+code {
+  font-family: fantasy, sans-serif;
+  font-size: 0.9rem;
+  background-color: #f4f4f4;
+  white-space: pre-wrap;
+}
+
 .page-container {
   display: grid;
   grid-template-columns: 1fr 1fr;

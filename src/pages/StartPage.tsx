@@ -18,20 +18,23 @@ const StartPage: React.FC = () => {
   // Static list of markdown files in cards/ directory
   const mockFiles = [
     "NestJS - Projektinitialisierung & Grundlagen.md",
-    "React - State Management.md",
+    "LangChainJS.md",
   ];
 
   useEffect(() => {
     if (currentFile) {
       setLoading(true);
+      console.log(`Loading file: ${currentFile}`);
       fetch(`cards/${currentFile}`)
         .then(res => res.text())
         .then(md => {
           const blocks = md.split(/---+/g).map(s => s.trim()).filter(Boolean);
+          console.log(blocks);
           const parsedCards: Flashcard[] = [];
           blocks.forEach(block => {
-            const match = block.match(/^###\s*\S+(.+?)\n+([\s\S]+)/);
+            const match = block.match(/^###\s*(.+?)(?:\r\n|\r|\n)+([\s\S]+)/);
             if (match) {
+              console.log(match);
               const [, question, answer] = match;
               parsedCards.push({ question: question.trim(), answer: answer.trim() });
             }

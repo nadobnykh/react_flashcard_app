@@ -27,7 +27,7 @@ const PrintView = () => {
           var pageIndex = 0;
           
           blocks.forEach((block, index) => {
-            const match = block.match(/^###\s*\S+(.+?)\n+([\s\S]+)/);
+            const match = block.match(/^###\s*(.+?)(?:\r\n|\r|\n)+([\s\S]+)/);
             if (match) {
               if(index > 0 && index % cardsPerPage == 0) {
                 pageIndex++;
