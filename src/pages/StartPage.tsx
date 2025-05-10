@@ -17,7 +17,8 @@ const StartPage: React.FC = () => {
 
   // Static list of markdown files in cards/ directory
   const mockFiles = [
-    "NestJS - Projektinitialisierung & Grundlagen.md",
+    "Build a Reactive Contact Form in Angular 19.md",
+    "Connect the form to a NestJS backend via HTTP.md",
     "LangChainJS.md",
   ];
 
@@ -104,7 +105,7 @@ const preventContextMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => 
               onContextMenu={preventContextMenu}
             >
               <div className="card-inner" style={{ transform: flippedCards.has(idx) ? 'rotateY(180deg)' : 'none' }}>
-                <div className="card-front">{card.question}</div>
+                <div className="card-front" dangerouslySetInnerHTML={{ __html: marked.parse(card.question) }} />
                 <div className="card-back" dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
               </div>
             </div>

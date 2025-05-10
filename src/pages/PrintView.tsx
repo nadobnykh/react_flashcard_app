@@ -59,7 +59,7 @@ const PrintView = () => {
             {page.map((card, index) => (
               <div key={index} className="card-print card-print-front">
                 <div className="card-file">{card.filename}</div>
-                <div>{card.question}</div>
+                <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question) }} />
               </div>
             ))}
           </div>
