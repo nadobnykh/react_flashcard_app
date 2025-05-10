@@ -13,14 +13,37 @@ const StartPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [currentFile, setCurrentFile] = useState('');
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+  const [cardFiles, setCardFiles] = useState<string[]>([]);
+  const [filesLoading, setFilesLoading] = useState(false);
+  const [filesError, setFilesError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  // Static list of markdown files in cards/ directory
-  const mockFiles = [
-    "Build a Reactive Contact Form in Angular 19.md",
-    "Connect the form to a NestJS backend via HTTP.md",
-    "LangChainJS.md",
-  ];
+  // Fetch list of markdown files from server API
+  useEffect(() => {
+    setFilesLoading(true);
+    fetch('http://localhost:8000/api/cards')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed fetching card filenames');
+        console.log(res);
+        // Check if the response is JSON
+        const contentType = res.headers.get('Content-Type');
+        if (contentType && contentType.includes('application/json')) {
+          return res.json();
+        }
+        return res;
+      })
+      .then((files: string[]) => {
+        setCardFiles(files);
+        setFilesError(null);
+      })
+      .catch(err => {
+        console.error(err);
+        setFilesError('Fehler beim Laden der Kartendateien');
+      })
+      .finally(() => {
+        setFilesLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
     if (currentFile) {
@@ -30,12 +53,12 @@ const StartPage: React.FC = () => {
         .then(res => res.text())
         .then(md => {
           const blocks = md.split(/---+/g).map(s => s.trim()).filter(Boolean);
-          console.log(blocks);
+          //console.log(blocks);
           const parsedCards: Flashcard[] = [];
           blocks.forEach(block => {
             const match = block.match(/^###\s*(.+?)(?:\r\n|\r|\n)+([\s\S]+)/);
             if (match) {
-              console.log(match);
+              //console.log(match);
               const [, question, answer] = match;
               parsedCards.push({ question: question.trim(), answer: answer.trim() });
             }
@@ -71,17 +94,19 @@ const StartPage: React.FC = () => {
       return newSet;
     });
   };
-// Prevent context menu on long press touch/mobile devices
-const preventContextMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  e.preventDefault();
-};
+  // Prevent context menu on long press touch/mobile devices
+  const preventContextMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+  };
 
 
   return (
     <div>
       <h1>📚 Flashcard Viewer</h1>
       <div id="fileList">
-        {mockFiles.map((filename) => (
+        {filesLoading && <p>Loading files...</p>}
+        {filesError && <p style={{color: "red"}}>{filesError}</p>}
+        {!filesLoading && !filesError && cardFiles.map((filename) => (
           <button key={filename} onClick={() => handleFileClick(filename)}>
             {filename}
           </button>
