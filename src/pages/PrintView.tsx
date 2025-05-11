@@ -14,6 +14,8 @@ const PrintView = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Get today's date string formatted as dd.mm.yyyy (European format)
+  const todayDate = new Date().toLocaleDateString('de-DE');
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
@@ -58,8 +60,9 @@ const PrintView = () => {
           <div className="page-container page-ltr">
             {page.map((card, index) => (
               <div key={index} className="card-print card-print-front">
-                <div className="card-file">{card.filename}</div>
+                <div className="card-header">{card.filename}</div>
                 <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question) }} />
+                <div className="card-footer">{todayDate}</div>
               </div>
             ))}
           </div>
