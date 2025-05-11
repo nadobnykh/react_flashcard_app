@@ -1,87 +1,67 @@
-# Welcome to React Router!
+# React Flashcard App
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Project Description
+This is a React-based flashcard application designed for creating, displaying, and printing flashcards. The app supports rendering markdown content for questions and answers, paginating cards efficiently, and includes a PrintView mode that formats flashcards for easy printing. The PrintView dynamically shows the current date in a European date format (dd.mm.yyyy) on each card.
 
 ## Features
+- Load flashcards from markdown files with front (question) and back (answer).
+- Paginate flashcards for organized viewing and printing.
+- Print-ready views with date stamping.
+- Supports React Router for navigation.
+- Uses `marked` for markdown rendering.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## Technologies Used
+- React with TypeScript
+- marked (Markdown parser)
+- React Router
+- CSS for styling
 
-## Getting Started
+## Setup Instructions
 
-### Installation
+1. **Clone the repository**
+   ```bash
+   git clone <repository_url>
+   cd react_flashcard_app
+   ```
 
-Install the dependencies:
+2. **Install dependencies**
+   Make sure you have Node.js installed. Then run:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
-```
+3. **Run the application in development mode**
+   ```bash
+   npm start
+   ```
+   This will start the development server, typically at `http://localhost:5173/`.
 
-### Development
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
+   The production-ready files will be in the `dist` or `build` folder.
 
-Start the development server with HMR:
+## Usage
 
-```bash
-npm run dev
-```
+- Place your markdown flashcard files in an accessible location.
+- Navigate in the app to the PrintView mode and pass the file path as a URL parameter `file`.
+- Example URL: `http://localhost:3000/printview?file=public/cards/your-flashcards.md`
+- Print the formatted flashcards with the current date shown on each card.
 
-Your application will be available at `http://localhost:5173`.
+## Project Structure Overview
+- `src/pages/PrintView.tsx`: Main component for rendering flashcards in print format.
+- `src/pages/PrintView.css`: Styles specific to the print view.
+- `public/cards/`: Default location for example markdown flashcard files.
 
-## Building for Production
+## Notes
+- Ensure markdown files adhere to the structure expected by the app (headers starting with `###`).
+- Date format in the card footer is European (dd.mm.yyyy).
+- The root container is clickable and returns navigation to the start page.
 
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+## License
+MIT License - open for modification and redistribution.
 
 ---
 
-Built with ❤️ using React Router.
+If you have any questions or want to contribute, please open an issue or pull request on the repository.
