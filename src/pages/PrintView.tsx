@@ -14,12 +14,15 @@ const PrintView = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const cardsPerPage = 8; // Number of cards per page
+  const cardHeight = 50 / cardsPerPage; // Height of the card in cm
+
   // Get today's date string formatted as dd.mm.yyyy (European format)
   const todayDate = new Date().toLocaleDateString('de-DE');
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
-    const cardsPerPage = 6; // Number of cards per page
+    
 
     if (file) {
       fetch(file)
@@ -59,7 +62,7 @@ const PrintView = () => {
         <div key={index} className="pages-wrapper">
           <div className="page-container page-ltr">
             {page.map((card, index) => (
-              <div key={index} className="card-print card-print-front">
+              <div key={index} style={{ height: cardHeight+'cm' }} className="card-print card-print-front">
                 <div className="card-header">{card.filename}</div>
                 <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question) }} />
                 <div className="card-footer">{todayDate}</div>
@@ -68,7 +71,7 @@ const PrintView = () => {
           </div>
           <div className="page-container page-rtl">
             {page.map((card, index) => (
-              <div key={index} className="card-print">
+              <div key={index} style={{ height: cardHeight+'cm' }} className="card-print">
                 <div dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
               </div>
             ))}
