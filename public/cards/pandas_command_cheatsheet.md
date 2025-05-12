@@ -1,7 +1,6 @@
 ## Basics
 
-### Explanation:
-Import pandas with the alias `pd`.
+### Import pandas with the alias `pd`.
 
 ```python
 import pandas as pd
@@ -10,8 +9,7 @@ import pandas as pd
 
 ## Basics
 
-### Explanation:
-Create a DataFrame from a dict, list of lists, or other structure.
+### Create a DataFrame from a dict, list of lists, or other structure.
 
 ```python
 pd.DataFrame(data)
@@ -20,8 +18,7 @@ pd.DataFrame(data)
 
 ## Basics
 
-### Explanation:
-Create a one-dimensional labeled array.
+### Create a one-dimensional labeled array.
 
 ```python
 pd.Series(data)
@@ -30,8 +27,7 @@ pd.Series(data)
 
 ## IO
 
-### Explanation:
-Load a CSV file into a DataFrame.
+### Load a CSV file into a DataFrame.
 
 ```python
 pd.read_csv('file.csv')
@@ -40,8 +36,7 @@ pd.read_csv('file.csv')
 
 ## IO
 
-### Explanation:
-Save a DataFrame to a CSV file.
+### Save a DataFrame to a CSV file.
 
 ```python
 df.to_csv('file.csv')
@@ -50,8 +45,7 @@ df.to_csv('file.csv')
 
 ## IO
 
-### Explanation:
-Load an Excel file into a DataFrame.
+### Load an Excel file into a DataFrame.
 
 ```python
 pd.read_excel('file.xlsx')
@@ -60,8 +54,7 @@ pd.read_excel('file.xlsx')
 
 ## IO
 
-### Explanation:
-Save a DataFrame as an Excel file.
+### Save a DataFrame as an Excel file.
 
 ```python
 df.to_excel('file.xlsx')
@@ -70,8 +63,7 @@ df.to_excel('file.xlsx')
 
 ## IO
 
-### Explanation:
-Load a JSON file into a DataFrame.
+### Load a JSON file into a DataFrame.
 
 ```python
 pd.read_json('file.json')
@@ -80,8 +72,7 @@ pd.read_json('file.json')
 
 ## IO
 
-### Explanation:
-Save a DataFrame to a JSON file.
+### Save a DataFrame to a JSON file.
 
 ```python
 df.to_json('file.json')
@@ -90,8 +81,7 @@ df.to_json('file.json')
 
 ## Exploration
 
-### Explanation:
-Show the first `n` rows (default 5).
+### Show the first `n` rows (default 5).
 
 ```python
 df.head(n)
@@ -100,8 +90,7 @@ df.head(n)
 
 ## Exploration
 
-### Explanation:
-Show the last `n` rows.
+### Show the last `n` rows.
 
 ```python
 df.tail(n)
@@ -110,8 +99,7 @@ df.tail(n)
 
 ## Exploration
 
-### Explanation:
-Display DataFrame summary (non-null counts, dtypes, memory usage).
+### Display DataFrame summary (non-null counts, dtypes, memory usage).
 
 ```python
 df.info()
@@ -120,8 +108,7 @@ df.info()
 
 ## Exploration
 
-### Explanation:
-Generate descriptive statistics for numerical columns.
+### Generate descriptive statistics for numerical columns.
 
 ```python
 df.describe()
@@ -130,8 +117,7 @@ df.describe()
 
 ## Exploration
 
-### Explanation:
-Return the shape of the DataFrame (rows, columns).
+### Return the shape of the DataFrame (rows, columns).
 
 ```python
 df.shape
@@ -140,8 +126,7 @@ df.shape
 
 ## Exploration
 
-### Explanation:
-Return column names.
+### Return column names.
 
 ```python
 df.columns
@@ -150,8 +135,7 @@ df.columns
 
 ## Exploration
 
-### Explanation:
-Return the index (row labels).
+### Return the index (row labels).
 
 ```python
 df.index
@@ -160,8 +144,7 @@ df.index
 
 ## Exploration
 
-### Explanation:
-Return data types of columns.
+### Return data types of columns.
 
 ```python
 df.dtypes
@@ -170,8 +153,7 @@ df.dtypes
 
 ## Selection
 
-### Explanation:
-Select a single column.
+### Select a single column.
 
 ```python
 df['col'] or df.col
@@ -180,8 +162,7 @@ df['col'] or df.col
 
 ## Selection
 
-### Explanation:
-Select multiple columns.
+### Select multiple columns.
 
 ```python
 df[['col1', 'col2']]
@@ -190,8 +171,7 @@ df[['col1', 'col2']]
 
 ## Selection
 
-### Explanation:
-Select row(s) by label (index name).
+### Select row(s) by label (index name).
 
 ```python
 df.loc['index_label']
@@ -200,8 +180,7 @@ df.loc['index_label']
 
 ## Selection
 
-### Explanation:
-Select row(s) by numerical index position.
+### Select row(s) by numerical index position.
 
 ```python
 df.iloc[0]
@@ -210,8 +189,7 @@ df.iloc[0]
 
 ## Selection
 
-### Explanation:
-Filter rows by condition, e.g., column values.
+### Filter rows by condition, e.g., column values.
 
 ```python
 df[df['col'] > 10]
@@ -220,8 +198,7 @@ df[df['col'] > 10]
 
 ## Cleaning
 
-### Explanation:
-Drop rows with missing (NaN) values.
+### Drop rows with missing (NaN) values.
 
 ```python
 df.dropna()
@@ -230,8 +207,7 @@ df.dropna()
 
 ## Cleaning
 
-### Explanation:
-Replace missing values with a specified value.
+### Replace missing values with a specified value.
 
 ```python
 df.fillna(0)
@@ -240,8 +216,7 @@ df.fillna(0)
 
 ## Cleaning
 
-### Explanation:
-Drop specified column(s).
+### Drop specified column(s).
 
 ```python
 df.drop(columns=['col'])
@@ -250,8 +225,7 @@ df.drop(columns=['col'])
 
 ## Cleaning
 
-### Explanation:
-Rename column(s).
+### Rename column(s).
 
 ```python
 df.rename(columns={'old':'new'})
@@ -260,8 +234,7 @@ df.rename(columns={'old':'new'})
 
 ## Cleaning
 
-### Explanation:
-Identify duplicate rows; returns a boolean mask.
+### Identify duplicate rows; returns a boolean mask.
 
 ```python
 df.duplicated()
@@ -270,8 +243,7 @@ df.duplicated()
 
 ## Cleaning
 
-### Explanation:
-Drop duplicate rows.
+### Drop duplicate rows.
 
 ```python
 df.drop_duplicates()
@@ -280,8 +252,7 @@ df.drop_duplicates()
 
 ## Transformation
 
-### Explanation:
-Add a new column from existing ones.
+### Add a new column from existing ones.
 
 ```python
 df['total'] = df['a'] + df['b']
@@ -290,8 +261,7 @@ df['total'] = df['a'] + df['b']
 
 ## Transformation
 
-### Explanation:
-Apply a function to rows or columns. `axis=0` for columns, `axis=1` for rows.
+### Apply a function to rows or columns. `axis=0` for columns, `axis=1` for rows.
 
 ```python
 df.apply(lambda x: x.max(), axis=0)
@@ -300,8 +270,7 @@ df.apply(lambda x: x.max(), axis=0)
 
 ## Transformation
 
-### Explanation:
-Map a function to each value in a Series (not DataFrame).
+### Map a function to each value in a Series (not DataFrame).
 
 ```python
 df['col'].map(lambda x: x*2)
@@ -310,8 +279,7 @@ df['col'].map(lambda x: x*2)
 
 ## Transformation
 
-### Explanation:
-Convert column to another type.
+### Convert column to another type.
 
 ```python
 df['col'].astype(int)
@@ -320,8 +288,7 @@ df['col'].astype(int)
 
 ## Transformation
 
-### Explanation:
-Replace values using a mapping dict.
+### Replace values using a mapping dict.
 
 ```python
 df.replace({'old': 'new'})
@@ -330,8 +297,7 @@ df.replace({'old': 'new'})
 
 ## Aggregation
 
-### Explanation:
-Sort DataFrame by values in specified column(s).
+### Sort DataFrame by values in specified column(s).
 
 ```python
 df.sort_values('col')
@@ -340,8 +306,7 @@ df.sort_values('col')
 
 ## Aggregation
 
-### Explanation:
-Group by a column, then compute mean (or other function). Example: `df.groupby('Dept').mean()` groups by department.
+### Group by a column, then compute mean (or other function). Example: `df.groupby('Dept').mean()` groups by department.
 
 ```python
 df.groupby('group_col').mean()
@@ -350,8 +315,7 @@ df.groupby('group_col').mean()
 
 ## Aggregation
 
-### Explanation:
-Aggregate multiple functions per column. Example: `df.agg({'salary': ['min', 'max']})` gives min/max salary.
+### Aggregate multiple functions per column. Example: `df.agg({'salary': ['min', 'max']})` gives min/max salary.
 
 ```python
 df.agg({'col': ['min', 'max']})
@@ -360,8 +324,7 @@ df.agg({'col': ['min', 'max']})
 
 ## Aggregation
 
-### Explanation:
-Create a pivot table (summarizes data). Example: `df.pivot_table(values='sales', index='region', columns='product')`.
+### Create a pivot table (summarizes data). Example: `df.pivot_table(values='sales', index='region', columns='product')`.
 
 ```python
 df.pivot_table(values='val', index='row', columns='col')
@@ -370,8 +333,7 @@ df.pivot_table(values='val', index='row', columns='col')
 
 ## Math
 
-### Explanation:
-Calculate mean of numeric columns.
+### Calculate mean of numeric columns.
 
 ```python
 df.mean()
@@ -380,8 +342,7 @@ df.mean()
 
 ## Math
 
-### Explanation:
-Calculate sum of numeric columns.
+### Calculate sum of numeric columns.
 
 ```python
 df.sum()
@@ -390,8 +351,7 @@ df.sum()
 
 ## Math
 
-### Explanation:
-Compute pairwise correlation of columns.
+### Compute pairwise correlation of columns.
 
 ```python
 df.corr()
@@ -400,8 +360,7 @@ df.corr()
 
 ## Math
 
-### Explanation:
-Count unique values and frequencies in a Series.
+### Count unique values and frequencies in a Series.
 
 ```python
 df['col'].value_counts()
@@ -410,8 +369,7 @@ df['col'].value_counts()
 
 ## Joining
 
-### Explanation:
-Concatenate DataFrames (e.g., stacking rows). Example: `pd.concat([df1, df2])` vertically stacks two DataFrames.
+### Concatenate DataFrames (e.g., stacking rows). Example: `pd.concat([df1, df2])` vertically stacks two DataFrames.
 
 ```python
 pd.concat([df1, df2])
@@ -420,8 +378,7 @@ pd.concat([df1, df2])
 
 ## Joining
 
-### Explanation:
-Merge two DataFrames using a common key. Example: `pd.merge(df1, df2, on='id', how='inner')`.
+### Merge two DataFrames using a common key. Example: `pd.merge(df1, df2, on='id', how='inner')`.
 
 ```python
 pd.merge(df1, df2, on='key')
@@ -430,8 +387,7 @@ pd.merge(df1, df2, on='key')
 
 ## Joining
 
-### Explanation:
-Join DataFrames on index. Example: `df1.join(df2)` assumes both DataFrames have aligned indices.
+### Join DataFrames on index. Example: `df1.join(df2)` assumes both DataFrames have aligned indices.
 
 ```python
 df1.join(df2)
@@ -440,8 +396,7 @@ df1.join(df2)
 
 ## Indexing
 
-### Explanation:
-Set a column as the index.
+### Set a column as the index.
 
 ```python
 df.set_index('col')
@@ -450,8 +405,7 @@ df.set_index('col')
 
 ## Indexing
 
-### Explanation:
-Reset index to default integer index.
+### Reset index to default integer index.
 
 ```python
 df.reset_index()
@@ -460,8 +414,7 @@ df.reset_index()
 
 ## Indexing
 
-### Explanation:
-Sort DataFrame by index.
+### Sort DataFrame by index.
 
 ```python
 df.sort_index()

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface Flashcard {
   filename: string;
+  category: string;
   question: string;
   answer: string;
 }
@@ -28,22 +29,24 @@ const PrintView = () => {
       fetch(file)
         .then(res => res.text())
         .then(md => {
+          const filename = file.split('/').pop() || 'unknown'; // Extract filename from the file path
           const blocks = md.split(/---+/g).map(s => s.trim()).filter(Boolean);
           var pageIndex = 0;
-          
           blocks.forEach((block, index) => {
-            const match = block.match(/^###\s*(.+?)(?:\r\n|\r|\n)+([\s\S]+)/);
-            if (match) {
-              if(index > 0 && index % cardsPerPage == 0) {
-                pageIndex++;
-              }
-              pages[pageIndex] = pages[pageIndex] || [];
-              const [, question, answer] = match;
-              const filename = file.split('/').pop() || 'unknown'; // Extract filename from the file path
-              const card = { filename: filename.trim(), question: question.trim(), answer: answer.trim() };
-              pages[pageIndex].push(card);
+            const lines = block.split(/\r\n|\r|\n/);
+            let category = "";
+            let question = "";
+            let answer = "";
+            lines.forEach(line => {
+              if(line.startsWith('## ')) category = line.slice(3).trim();
+              else if(line.startsWith('### ')) question = line.slice(4).trim();
+              else answer += "\n" + line.trim();
+            });
+            pages[pageIndex] = pages[pageIndex] || [];
+            pages[pageIndex].push({ filename, category, question, answer });
+            if(index > 0 && index % cardsPerPage == 0) {
+              pageIndex++;
             }
-            
           });
           setPages(pages);
           setLoading(false);
@@ -63,9 +66,10 @@ const PrintView = () => {
           <div className="page-container page-ltr">
             {page.map((card, index) => (
               <div key={index} style={{ height: cardHeight+'cm' }} className="card-print card-print-front">
-                <div className="card-header">{card.filename}</div>
-                <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question) }} />
-                <div className="card-footer">{todayDate}</div>
+                <div className="card-header">✨ {card.filename}</div>
+                <div className="card-category">{card.category}</div>
+                <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question+"❔") }} />
+                <div className="card-footer">📅 {todayDate} 📍</div>
               </div>
             ))}
           </div>

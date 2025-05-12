@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './StartPage.css';
 
 interface Flashcard {
+  category: string;
   question: string;
   answer: string;
 }
@@ -56,12 +57,18 @@ const StartPage: React.FC = () => {
           //console.log(blocks);
           const parsedCards: Flashcard[] = [];
           blocks.forEach(block => {
-            const match = block.match(/^###\s*(.+?)(?:\r\n|\r|\n)+([\s\S]+)/);
-            if (match) {
-              //console.log(match);
-              const [, question, answer] = match;
-              parsedCards.push({ question: question.trim(), answer: answer.trim() });
-            }
+            const lines = block.split(/\r\n|\r|\n/);
+            let category = "";
+            let question = "";
+            let answer = "";
+            lines.forEach(line => {
+                // The previous code attempts to assign answer in every line, causing logical issues and 'continue' used improperly.
+                if(line.startsWith('## ')) category = line.slice(3).trim();
+                else if(line.startsWith('### ')) question = line.slice(4).trim();
+                else answer += "\n" + line.trim();
+            });
+            parsedCards.push({ category, question, answer });
+            console.log(parsedCards);
           });
           setCards(parsedCards);
           setFlippedCards(new Set()); // Reset flipped cards on file change

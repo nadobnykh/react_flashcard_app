@@ -67,11 +67,19 @@ code {
   pointer-events: none;
 }
 
-.card-header::before {
-  content: "🚀"; /* page icon emoji */
-  font-size: 0.8rem;
-  display: inline-block;
-  margin-right: 0.2rem;
+.card-category {
+  position: absolute;
+  top: 1.8rem;
+  font-size: 3rem;
+  color: grey;
+  opacity: 0.1;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: Arial, sans-serif;
+  user-select: none;
+  pointer-events: none;
+  z-index: -3;
 }
 
 .card-footer {
