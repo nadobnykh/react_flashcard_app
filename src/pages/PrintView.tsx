@@ -42,11 +42,15 @@ const PrintView = () => {
               else if(line.startsWith('### ')) question = line.slice(4).trim();
               else answer += "\n" + line.trim();
             });
-            pages[pageIndex] = pages[pageIndex] || [];
-            pages[pageIndex].push({ filename, category, question, answer });
+
+
             if(index > 0 && index % cardsPerPage == 0) {
               pageIndex++;
             }
+            
+            pages[pageIndex] = pages[pageIndex] || [];
+            pages[pageIndex].push({ filename, category, question, answer });
+            
           });
           setPages(pages);
           setLoading(false);

@@ -69,10 +69,10 @@ code {
 
 .card-category {
   position: absolute;
-  top: 1.8rem;
-  font-size: 3rem;
+  top: 1.6rem;
+  font-size: 2.8rem;
   color: grey;
-  opacity: 0.1;
+  opacity: 0.2;
   display: flex;
   align-items: center;
   gap: 0.2rem;
