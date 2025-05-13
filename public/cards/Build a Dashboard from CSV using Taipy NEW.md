@@ -2,19 +2,34 @@
 
 ### 1a. How do you create a virtual environment in Python?
 
-Use `python -m venv .venv` in your terminal to create a new virtual environment named `.venv`.
+**Terminal:** 
+
+`python -m venv .venv`
 
 ---
 
 ### 1b. How do you activate a virtual environment?
 
-Use `source .venv/bin/activate` on Unix/Mac or `.venv\Scripts\activate` on Windows.
+**Terminal:** 
+
+`source .venv/bin/activate` 
+
+on Unix/Mac or 
+
+`.venv\Scripts\activate` 
+
+on Windows.
 
 ---
 
 ### 1c. How do you install required packages for a Taipy project?
 
-Run `pip install --upgrade pip` followed by `pip install taipy pandas plotly`.
+**Terminal:**
+
+```bash
+pip install --upgrade pip
+pip install taipy pandas plotly
+```
 
 ---
 
@@ -22,7 +37,9 @@ Run `pip install --upgrade pip` followed by `pip install taipy pandas plotly`.
 
 ### 2a. How do you download the Penguins dataset as a CSV?
 
-Run: `curl -o data.csv https://raw.githubusercontent.com /mwaskom/seaborn-data/master/penguins.csv`
+**Terminal:**
+
+`curl -o data.csv https://raw.githubusercontent.com /mwaskom/seaborn-data/master/penguins.csv`
 
 ---
 
@@ -36,7 +53,7 @@ Ensure `data.csv` exists in your project folder (where `main.py` resides).
 
 ### 3a. How do you create a simple Taipy GUI application?
 
-Create a file `main.py` and add:
+**File: `main.py`**
 
 ```python
 from taipy.gui import Gui
@@ -48,7 +65,9 @@ Gui(page).run()
 
 ### 3b. How do you run a Taipy app?
 
-Execute `python main.py` in the terminal.
+**Terminal:** 
+
+`python main.py`
 
 ---
 
@@ -56,13 +75,17 @@ Execute `python main.py` in the terminal.
 
 ### 4a. How do you import pandas?
 
+**File: `main.py`**
+
 Add `import pandas as pd` at the top of your script.
 
 ---
 
 ### 4b. How do you load a CSV file into a DataFrame?
 
-Use `df = pd.read_csv("data.csv")` to read the CSV.
+**File: `main.py`**
+
+Use `df = pd.read_csv("data.csv")`
 
 ---
 
@@ -70,11 +93,15 @@ Use `df = pd.read_csv("data.csv")` to read the CSV.
 
 ### 5a. How do you display a DataFrame in Taipy?
 
-Use `<|{df}|table|>` inside the Markdown page string to render the DataFrame as a table.
+**File: `main.py`**
+
+Use `<|{df}|table|>` inside the Markdown page string.
 
 ---
 
 ### 5b. How do you render the table in the browser?
+
+**File: `main.py`**
 
 Wrap the page string in `Gui(page).run()` and run the script.
 
@@ -84,16 +111,20 @@ Wrap the page string in `Gui(page).run()` and run the script.
 
 ### 6a. How do you define state variables in Taipy?
 
-Declare them in your script like `selected_col = df.columns[0]`, `filter_value = ""`, and `view = df.copy()`.
+**File: `main.py`**
+
+Declare: `selected_col = df.columns[0]`, `filter_value = ""`, `view = df.copy()`.
 
 ---
 
 ### 6b. How do you define a filtering method in Taipy?
 
+**File: `main.py`**
+
 ```python
 def on_filter(state):
-    mask = state.df[state.selected_col].astype(str)
-    .str.contains(
+    mask = state.df[state.selected_col]
+    .astype(str).str.contains(
         state.filter_value, case=False, na=False
     )
     state.view = state.df[mask]
@@ -103,11 +134,14 @@ def on_filter(state):
 
 ### 6c. How do you add filter UI controls to the page?
 
-Add this to the page string:
+**File: `main.py`**
+
+Add to the page string:
 
 ```markdown
 <|layout|columns=1 1|
-Select column: <|{selected_col}|selector|lov={list(df.columns)}|>
+Select column: 
+<|{selected_col}|selector|lov={list(df.columns)}|>
 Filter: <|{filter_value}|input|>
 |>
 <|{view}|table|>
@@ -120,11 +154,15 @@ Filter: <|{filter_value}|input|>
 
 ### 7a. How do you import Plotly Express?
 
-Add `import plotly.express as px`.
+**File: `main.py`**
+
+Add `import plotly.express as px`
 
 ---
 
 ### 7b. How do you define a function to generate a chart?
+
+**File: `main.py`**
 
 ```python
 def make_fig(state):
@@ -141,6 +179,8 @@ def make_fig(state):
 
 ### 7c. How do you integrate chart creation into the filter method?
 
+**File: `main.py`**
+
 Update `on_filter()`:
 
 ```python
@@ -151,6 +191,8 @@ state.fig = make_fig(state)
 ---
 
 ### 7d. How do you add the chart to the UI?
+
+**File: `main.py`**
 
 Declare the figure and use `<|{fig}|chart|>` in the page.
 
@@ -226,11 +268,15 @@ When referenced in the UI (e.g., `<|method_name|method|>`) or called interactive
 
 ### C1. How do you create a scatter chart with Plotly Express?
 
-Use `px.scatter(df, x=..., y=...)`.
+**File: `main.py`**
+
+Use `px.scatter(df, x=..., y=...)`
 
 ---
 
 ### C2. How do you show a Plotly chart in Taipy?
+
+**File: `main.py`**
 
 Bind the figure to a variable and use `<|{fig}|chart|>` in the page.
 
@@ -266,17 +312,23 @@ Use `print(state.variable)` in your methods and check the terminal output.
 
 ### U1. How do you reset filters in a Taipy app?
 
+**File: `main.py`**
+
 Create a reset button that clears inputs and re-runs `on_filter()`.
 
 ---
 
 ### U2. How can users upload their own CSV file?
 
-Use a file component: `<|{uploaded_file}|file|extensions=.csv|>` and load it in a method.
+**File: `main.py`**
+
+Use `<|{uploaded_file}|file|extensions=.csv|>` and load it in a method.
 
 ---
 
 ### U3. How do you let users export filtered data?
+
+**File: `main.py`**
 
 Call `view.to_csv("output.csv")` and provide a download link or button.
 

@@ -14,6 +14,7 @@ code {
   font-weight: 600;
   background-color: #fcfcfc;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .page-container {
