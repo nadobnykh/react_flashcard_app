@@ -65,6 +65,32 @@
   text-align: left;
 }
 
+.flashcards-label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  color: #005fa3;
+}
+
+.flashcards-select {
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+  border: 2px solid #0077cc;
+  background-color: white;
+  color: #0077cc;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flashcards-select:hover,
+.flashcards-select:focus {
+  border-color: #005fa3;
+  box-shadow: 0 0 8px rgba(0, 95, 163, 0.5);
+  outline: none;
+}
+
 /* Buttons and file list */
 button {
   font-size: 1rem;

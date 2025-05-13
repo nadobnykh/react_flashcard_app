@@ -125,18 +125,18 @@ const StartPage: React.FC = () => {
         ))}
       </div>
 
-      <label htmlFor="flashcardsPerPageSelect" style={{ marginRight: '0.5rem' }}>
+      <label htmlFor="flashcardsPerPageSelect" className="flashcards-label">
         Flashcards per Page:
       </label>
       <select
         id="flashcardsPerPageSelect"
+        className="flashcards-select"
         value={flashcardsPerPage}
         onChange={(e) => {
           const newValue = parseInt(e.target.value, 10);
           setFlashcardsPerPage(newValue);
           sessionStorage.setItem('flashcardsPerPage', newValue.toString());
         }}
-        style={{ marginRight: '1rem' }}
       >
         <option value={8}>8</option>
         <option value={6}>6</option>
