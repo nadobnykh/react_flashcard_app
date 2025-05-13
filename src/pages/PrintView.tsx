@@ -32,9 +32,9 @@ const PrintView = () => {
           const filename = file.split('/').pop() || 'unknown'; // Extract filename from the file path
           const blocks = md.split(/---+/g).map(s => s.trim()).filter(Boolean);
           var pageIndex = 0;
+          let category = "";
           blocks.forEach((block, index) => {
             const lines = block.split(/\r\n|\r|\n/);
-            let category = "";
             let question = "";
             let answer = "";
             lines.forEach(line => {
@@ -72,7 +72,7 @@ const PrintView = () => {
               <div key={index} style={{ height: cardHeight+'cm' }} className="card-print card-print-front">
                 <div className="card-header">✨ {card.filename}</div>
                 <div className="card-category">{card.category}</div>
-                <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question+"❔") }} />
+                <div dangerouslySetInnerHTML={{ __html: marked.parse(card.question) }} />
                 <div className="card-footer">📅 {todayDate} 📍</div>
               </div>
             ))}
