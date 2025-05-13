@@ -136,8 +136,6 @@ def on_filter(state):
 
 **File: `main.py`**
 
-Add to the page string:
-
 ```markdown
 <|layout|columns=1 1|
 Select column: 
