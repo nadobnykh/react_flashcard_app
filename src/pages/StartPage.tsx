@@ -17,6 +17,11 @@ const StartPage: React.FC = () => {
   const [cardFiles, setCardFiles] = useState<string[]>([]);
   const [filesLoading, setFilesLoading] = useState(false);
   const [filesError, setFilesError] = useState<string | null>(null);
+  const [flashcardsPerPage, setFlashcardsPerPage] = useState<number>(() => {
+    // Try to load saved setting from session storage or default to 8
+    const saved = sessionStorage.getItem('flashcardsPerPage');
+    return saved ? parseInt(saved, 10) : 8;
+  });
   const navigate = useNavigate();
 
   // Fetch list of markdown files from server API
@@ -86,7 +91,7 @@ const StartPage: React.FC = () => {
       alert('Bitte zuerst eine Datei laden.');
       return;
     }
-    navigate(`/print?file=${encodeURIComponent(`cards/${currentFile}`)}`);
+    navigate(`/print?file=${encodeURIComponent(`cards/${currentFile}`)}&cardsPerPage=${flashcardsPerPage}`);
   };
 
   // Flip logic: flip on mouse or touch down, flip back on mouse/touch up or leave
@@ -119,9 +124,28 @@ const StartPage: React.FC = () => {
           </button>
         ))}
       </div>
+
+      <label htmlFor="flashcardsPerPageSelect" style={{ marginRight: '0.5rem' }}>
+        Flashcards per Page:
+      </label>
+      <select
+        id="flashcardsPerPageSelect"
+        value={flashcardsPerPage}
+        onChange={(e) => {
+          const newValue = parseInt(e.target.value, 10);
+          setFlashcardsPerPage(newValue);
+          sessionStorage.setItem('flashcardsPerPage', newValue.toString());
+        }}
+        style={{ marginRight: '1rem' }}
+      >
+        <option value={8}>8</option>
+        <option value={6}>6</option>
+      </select>
+
       <button id="printButton" onClick={handlePrintClick}>
         🖨️ Druckansicht
       </button>
+
       <div id="cardContainer" className="card-container">
         {loading && <p>Loading...</p>}
         {!loading &&

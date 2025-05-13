@@ -15,15 +15,16 @@ const PrintView = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const cardsPerPage = 8; // Number of cards per page
+  // Read cardsPerPage from url param or default to 8
+  const urlParams = new URLSearchParams(window.location.search);
+  const cardsPerPageParam = urlParams.get('cardsPerPage');
+  const cardsPerPage = cardsPerPageParam ? parseInt(cardsPerPageParam, 10) : 8;
   const cardHeight = 50 / cardsPerPage; // Height of the card in cm
 
   // Get today's date string formatted as dd.mm.yyyy (European format)
   const todayDate = new Date().toLocaleDateString('de-DE');
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
-    
 
     if (file) {
       fetch(file)
@@ -43,7 +44,6 @@ const PrintView = () => {
               else answer += "\n" + line.trim();
             });
 
-
             if(index > 0 && index % cardsPerPage == 0) {
               pageIndex++;
             }
@@ -56,7 +56,7 @@ const PrintView = () => {
           setLoading(false);
         });
     }
-  }, []);
+  }, [cardsPerPage]);
 
   if (loading) {
     return <p>Loading...</p>;
