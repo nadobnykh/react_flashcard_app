@@ -8,6 +8,7 @@ interface Flashcard {
   category: string;
   question: string;
   answer: string;
+  answerFontSize: number;
 }
 
 const PrintView = () => {
@@ -43,13 +44,22 @@ const PrintView = () => {
               else if(line.startsWith('### ')) question = line.slice(4).trim();
               else answer += "\n" + line.trim();
             });
+            let lengthOfAnswer = marked.parse(answer).replace(/(<([^>]+)>)/ig, '').length;
+            let answerFontSize = (lengthOfAnswer < 30) ? 2.5-lengthOfAnswer/24 : 1;
+
+            /// Some degugging / try&error that can be remove later
+            console.log(marked.parse(answer));
+            let answerFontSizeConsoleColor = "";
+            if(answerFontSize < 1.1 ) answerFontSizeConsoleColor = 'background: #ff0000; color: #ffffff';
+            if(answerFontSize == 1 ) answerFontSizeConsoleColor = 'background:rgb(255, 251, 0); color:rgb(0, 0, 0)';
+            console.log('%c ' + answerFontSize, answerFontSizeConsoleColor);
 
             if(index > 0 && index % cardsPerPage == 0) {
               pageIndex++;
             }
             
             pages[pageIndex] = pages[pageIndex] || [];
-            pages[pageIndex].push({ filename, category, question, answer });
+            pages[pageIndex].push({ filename, category, question, answer, answerFontSize });
             
           });
           setPages(pages);
@@ -79,7 +89,7 @@ const PrintView = () => {
           </div>
           <div className="page-container page-rtl">
             {page.map((card, index) => (
-              <div key={index} style={{ height: cardHeight+'cm' }} className="card-print">
+              <div key={index} style={{ height: cardHeight+'cm', fontSize: card.answerFontSize+'rem' }} className="card-print">
                 <div dangerouslySetInnerHTML={{ __html: marked.parse(card.answer) }} />
               </div>
             ))}
