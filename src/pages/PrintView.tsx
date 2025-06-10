@@ -11,6 +11,8 @@ interface Flashcard {
   answerFontSize: number;
 }
 
+
+
 const PrintView = () => {
   const [pages, setPages] = useState<Flashcard[][]>([]);
   const [loading, setLoading] = useState(true);
@@ -42,13 +44,14 @@ const PrintView = () => {
             lines.forEach(line => {
               if(line.startsWith('## ')) category = line.slice(3).trim();
               else if(line.startsWith('### ')) question = line.slice(4).trim();
-              else answer += "\n" + line.trim();
+              else answer += "\n" + line.trimEnd();
             });
             let lengthOfAnswer = marked.parse(answer).replace(/(<([^>]+)>)/ig, '').length;
             let answerFontSize = (lengthOfAnswer < 30) ? 2.5-lengthOfAnswer/24 : 1;
 
             /// Some degugging / try&error that can be remove later
-            console.log(marked.parse(answer));
+            console.log(answer);
+            //console.log(marked.parse(answer));
             let answerFontSizeConsoleColor = "";
             if(answerFontSize < 1.1 ) answerFontSizeConsoleColor = 'background: #ff0000; color: #ffffff';
             if(answerFontSize == 1 ) answerFontSizeConsoleColor = 'background:rgb(255, 251, 0); color:rgb(0, 0, 0)';
