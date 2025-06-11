@@ -1,22 +1,5 @@
 ## Docker CLI Basics
 
-### Start a container from an image and open a shell
-
-`docker run -it IMAGE_NAME bash`
-
----
-
-### List all running containers
-
-`docker ps`
-
----
-
-### List all containers (running and stopped)
-
-`docker ps -a`
-
----
 
 ### Build a Docker image from a Dockerfile
 
@@ -68,17 +51,7 @@
 
 ## Dockerfile Basics
 
-### Define base image
 
-`FROM node:20`
-
----
-
-### Set working directory inside image
-
-`WORKDIR /app`
-
----
 
 ### Copy files into image
 
@@ -112,30 +85,6 @@
 
 ## Docker Compose Basics
 
-### Start services defined in `docker-compose.yml`
-
-`docker compose up`
-
----
-
-### Start services in background
-
-`docker compose up -d`
-
----
-
-### Stop services
-
-`docker compose down`
-
----
-
-### Rebuild images and start services
-
-`docker compose up --build`
-
----
-
 ### Show running services
 
 `docker compose ps`
@@ -160,54 +109,10 @@
 
 ---
 
+
+
 ## compose.yml Essentials
 
-### Define a service using image
-
-```yaml
-services:
-  web:
-    image: nginx
-```
-
----
-
-### Build image from Dockerfile
-
-```yaml
-services:
-  app:
-    build: .
-```
-
----
-
-### Map ports between host and container
-
-```yaml
-ports:
-  - "8080:80"
-```
-
----
-
-### Mount a volume
-
-```yaml
-volumes:
-  - .:/app
-```
-
----
-
-### Set environment variables for a service
-
-```yaml
-environment:
-  - NODE_ENV=production
-```
-
----
 
 ### Define named volumes
 
@@ -245,18 +150,12 @@ command: ["npm", "run", "dev"]
 
 
 
-
-
-
-
-
-
-
 ## Docker CLI Basics
 
 ### Start a container from an image and open a shell
 
 `docker run -it IMAGE_NAME bash`
+
 *→ Used in: console*
 
 ---
@@ -264,6 +163,7 @@ command: ["npm", "run", "dev"]
 ### List all running containers
 
 `docker ps`
+
 *→ Used in: console*
 
 ---
@@ -271,6 +171,7 @@ command: ["npm", "run", "dev"]
 ### List all containers (including stopped)
 
 `docker ps -a`
+
 *→ Used in: console*
 
 ---
@@ -278,6 +179,7 @@ command: ["npm", "run", "dev"]
 ### Build an image from Dockerfile in current directory
 
 `docker build -t myapp:latest .`
+
 *→ Used in: console*
 
 ---
@@ -285,6 +187,7 @@ command: ["npm", "run", "dev"]
 ### Tag an image for pushing to a registry
 
 `docker tag myapp:latest myregistry/myapp:prod`
+
 *→ Used in: console*
 
 ---
@@ -292,6 +195,7 @@ command: ["npm", "run", "dev"]
 ### Push an image to Docker Hub or another registry
 
 `docker push myregistry/myapp:prod`
+
 *→ Used in: console*
 
 ---
@@ -299,6 +203,7 @@ command: ["npm", "run", "dev"]
 ### Stop a running container
 
 `docker stop CONTAINER_ID`
+
 *→ Used in: console*
 
 ---
@@ -306,6 +211,7 @@ command: ["npm", "run", "dev"]
 ### Remove all stopped containers
 
 `docker container prune`
+
 *→ Used in: console*
 
 ---
@@ -313,6 +219,7 @@ command: ["npm", "run", "dev"]
 ### Execute command inside running container
 
 `docker exec -it CONTAINER_ID bash`
+
 *→ Used in: console*
 
 ---
@@ -320,6 +227,7 @@ command: ["npm", "run", "dev"]
 ### Start container with volume and port
 
 `docker run -v $PWD:/app -p 3000:3000 node:20`
+
 *→ Used in: console*
 
 ---
@@ -329,6 +237,7 @@ command: ["npm", "run", "dev"]
 ### Use base image
 
 `FROM node:20-alpine`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -336,6 +245,7 @@ command: ["npm", "run", "dev"]
 ### Set working directory
 
 `WORKDIR /app`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -343,6 +253,7 @@ command: ["npm", "run", "dev"]
 ### Copy source files
 
 `COPY . .`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -350,6 +261,7 @@ command: ["npm", "run", "dev"]
 ### Run command during image build
 
 `RUN npm ci`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -357,6 +269,7 @@ command: ["npm", "run", "dev"]
 ### Expose port (informational only)
 
 `EXPOSE 3000`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -364,6 +277,7 @@ command: ["npm", "run", "dev"]
 ### Define default container command
 
 `CMD ["node", "server.js"]`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -371,6 +285,7 @@ command: ["npm", "run", "dev"]
 ### Define environment variable
 
 `ENV NODE_ENV=production`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -396,6 +311,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 ### Start services
 
 `docker compose up`
+
 *→ Used in: console*
 
 ---
@@ -403,6 +319,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 ### Start in detached mode
 
 `docker compose up -d`
+
 *→ Used in: console*
 
 ---
@@ -410,6 +327,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 ### Stop and remove containers, networks, volumes
 
 `docker compose down -v`
+
 *→ Used in: console*
 
 ---
@@ -417,6 +335,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 ### Rebuild images and restart services
 
 `docker compose up --build`
+
 *→ Used in: console*
 
 ---
@@ -424,6 +343,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 ### Show logs from a service
 
 `docker compose logs web`
+
 *→ Used in: console*
 
 ---
@@ -431,6 +351,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 ### Execute shell inside service container
 
 `docker compose exec app sh`
+
 *→ Used in: console*
 
 ---
@@ -588,6 +509,7 @@ services:
 ### What does Docker consider a healthy container?
 
 A container is healthy if the last health check passed (exit code 0).
+
 *→ Conceptual*
 
 ---
@@ -595,6 +517,7 @@ A container is healthy if the last health check passed (exit code 0).
 ### What happens when a container is unhealthy?
 
 Docker marks it as `unhealthy`; you can use this status in orchestration logic.
+
 *→ Conceptual / used in: Docker CLI, Swarm, Kubernetes*
 
 ---
@@ -602,6 +525,7 @@ Docker marks it as `unhealthy`; you can use this status in orchestration logic.
 ### Show container health status
 
 `docker inspect --format='{{json .State.Health}}' CONTAINER_ID`
+
 *→ Used in: console*
 
 ---
@@ -623,6 +547,7 @@ deploy:
 ### Build Docker image from current directory
 
 `docker build -t myapp:latest .`
+
 *→ Used in: Console*
 
 ---
@@ -630,6 +555,7 @@ deploy:
 ### Run container interactively with shell
 
 `docker run -it myapp /bin/sh`
+
 *→ Used in: Console*
 
 ---
@@ -637,6 +563,7 @@ deploy:
 ### View running containers
 
 `docker ps`
+
 *→ Used in: Console*
 
 ---
@@ -644,6 +571,7 @@ deploy:
 ### Stop a running container
 
 `docker stop CONTAINER_ID`
+
 *→ Used in: Console*
 
 ---
@@ -651,6 +579,7 @@ deploy:
 ### Remove an image
 
 `docker rmi myapp:latest`
+
 *→ Used in: Console*
 
 ---
@@ -658,6 +587,7 @@ deploy:
 ### Show container health info
 
 `docker inspect --format='{{json .State.Health}}' CONTAINER_ID`
+
 *→ Used in: Console*
 
 ---
@@ -667,6 +597,7 @@ deploy:
 ### Use lightweight base image
 
 `FROM node:20-alpine`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -674,6 +605,7 @@ deploy:
 ### Set working directory in image
 
 `WORKDIR /app`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -681,6 +613,7 @@ deploy:
 ### Copy all local files into image
 
 `COPY . .`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -688,6 +621,7 @@ deploy:
 ### Install dependencies without dev tools
 
 `RUN npm ci --omit=dev`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -695,6 +629,7 @@ deploy:
 ### Expose port for runtime
 
 `EXPOSE 3000`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -702,6 +637,7 @@ deploy:
 ### Define startup command
 
 `CMD ["node", "dist/main.js"]`
+
 *→ Used in: Dockerfile*
 
 ---
@@ -966,6 +902,7 @@ ports:
 ### Secure backend behind reverse proxy only
 
 Do **not** expose backend ports like `3000` in Compose
+
 *→ Used in: compose.yml (omit `ports:` for backend)*
 
 ---
@@ -973,6 +910,7 @@ Do **not** expose backend ports like `3000` in Compose
 ### Generate TLS cert locally with mkcert (dev only)
 
 `mkcert -cert-file fullchain.pem -key-file privkey.pem example.com`
+
 *→ Used in: Console*
 
 ---
@@ -980,6 +918,7 @@ Do **not** expose backend ports like `3000` in Compose
 ### Use Let's Encrypt with certbot (production)
 
 Use certbot to generate certs on host or in a separate container
+
 *→ Used in: Console / production deployment scripts*
 
 
